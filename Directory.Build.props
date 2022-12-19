@@ -1,0 +1,36 @@
+<Project>
+
+    <PropertyGroup>
+        <BaseDir>$(MSBuildThisFileDirectory)</BaseDir>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <NeutralLanguage>de</NeutralLanguage>
+        <DebugType>embedded</DebugType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <ImplicitUsings>true</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Company>Stefc Development</Company>
+        <Authors>$(Company)</Authors>
+        <Copyright>Copyright © $(Company) $([System.DateTime]::Now.Year)</Copyright>
+        <Trademark>$(Company)™</Trademark>
+        <Product>stefc.pv</Product>
+    </PropertyGroup>
+
+    <!-- Versionierung zusammen mit version.json -->
+    <ItemGroup>
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>mosmix.tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+</Project>
