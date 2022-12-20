@@ -9,8 +9,7 @@
   </PropertyGroup>
 
  <ItemGroup>
-    <PackageReference Include="stefc.mosmix" Version="0.2.9" />
-    <!-- <ProjectReference Include="..\src\mosmix.csproj" /> -->
+    <PackageReference Include="stefc.mosmix" Version="0.2.1" />
   </ItemGroup>
 
   <ItemGroup>
