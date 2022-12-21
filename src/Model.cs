@@ -15,4 +15,4 @@ public record ProductDefinition(string Issuer, string Id, DateTime? IssueTime, I
 
 public record PlaceMark(string Name, string Description, Coordinate? Coordinate, IDictionary<string, double?[]> Forecasts) { }
 
-public record Coordinate(decimal Latitude, decimal Longitude, decimal Elevation) { }
+public record Coordinate(decimal Latitude, decimal Longitude, decimal Altitude) { }

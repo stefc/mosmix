@@ -30,18 +30,19 @@ using (var stream = File.Open(Path.Combine(path, "MOSMIX_A762.kmz"), FileMode.Op
 For easy use the lib gives you also a class `ForecastAdapter` that gives you typed access to the raw
 timeseries values. The following figures at the moment available [^1] : 
 
-| Name              | Elementname   | Description                                       | Unit              | 
-| -----------       | -----------   | -----------                                       | -----------       | 
-| SurfacePressure   | `PPPP`        | Surface pressure                                  | Pa                |
-| Temperature       | `TTT`         | Temperature 2m above surface                      | Celcius Degree    |
-| MaxTemperature    | `TX`          | Maximum temperature - within the last 12 hours    | Celcius Degree    |
-| MinTemperature    | `TN`          | Minimum temperature - within the last 12 hours    | Celcius Degree    |
-| DewPoint          | `Td`          | Dewpoint 2m above surface                         | Celcius Degree    |
-| WindDirection     | `DD`          | Wind Direction                                    | 0..360°           |
-| WindSpeed         | `FF`          | Wind Speed                                        | m/sec             |
-| WindSpeed1h       | `FX1`         | Maximum wind gust within the last hour            | m/sec             |
-| WindSpeed3h       | `FX3`         | Maximum wind gust within the last 3 hours         | m/sec             |
-| WindSpeed12h      | `FXh`         | Maximum wind gust within the last 12 hours        | m/sec             |
+ Name              | Elementname   | Description                                       | Unit               
+---|---|---|--- 
+ SurfacePressure   | `PPPP`        | Surface pressure                                  | Pa                
+ Temperature       | `TTT`         | Temperature 2m above surface                      | Celcius Degree    
+ MaxTemperature    | `TX`          | Maximum temperature - within the last 12 hours    | Celcius Degree    
+ MinTemperature    | `TN`          | Minimum temperature - within the last 12 hours    | Celcius Degree    
+ DewPoint          | `Td`          | Dewpoint 2m above surface                         | Celcius Degree    
+ WindDirection     | `DD`          | Wind Direction                                    | 0..360°           
+ WindSpeed         | `FF`          | Wind Speed                                        | m/sec             
+ WindSpeed1h       | `FX1`         | Maximum wind gust within the last hour            | m/sec             
+ WindSpeed3h       | `FX3`         | Maximum wind gust within the last 3 hours         | m/sec             
+ WindSpeed12h      | `FXh`         | Maximum wind gust within the last 12 hours        | m/sec             
+
 
 
 [^1]: If you need more figures please entry an issuee or even better create a pull request.
