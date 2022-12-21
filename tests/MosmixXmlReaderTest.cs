@@ -24,7 +24,7 @@ public class MosmixXmlReaderTest
             
             Assert.Equal("A762", document.PlaceMark.Name);
             Assert.Equal("WITTENBORN", document.PlaceMark.Description);
-            Assert.Equal(new Coordinate(10.23m,53.92m,38.0m), document.PlaceMark.Coordinate);
+            Assert.Equal(new Coordinate(Latitude: 53.92m, Longitude: 10.23m, Altitude: 38.0m), document.PlaceMark.Coordinate);
             Assert.Equal(114, document.PlaceMark.Forecasts.Count);
         }
     }
@@ -47,7 +47,7 @@ public class MosmixXmlReaderTest
             
             Assert.Equal("A762", document.PlaceMark.Name);
             Assert.Equal("WITTENBORN", document.PlaceMark.Description);
-            Assert.Equal(new Coordinate(10.23m,53.92m,38.0m), document.PlaceMark.Coordinate);
+            Assert.Equal(new Coordinate(Latitude: 53.92m, Longitude: 10.23m, Altitude: 38.0m), document.PlaceMark.Coordinate);
             Assert.Equal(114, document.PlaceMark.Forecasts.Count);
         }
     } 

@@ -77,7 +77,7 @@ internal class MosmixXmlReader : IMosmixReader
             .Select(ValueConverter.ToDecimal)
             .ToArray();
 
-        return parts != null ? new Coordinate(parts[0], parts[1], parts[2]) : null;
+        return parts != null ? new Coordinate(parts[1], parts[0], parts[2]) : null;
     }
 
     private IDictionary<string,double?[]> ReadTimeSeries(IEnumerable<XElement> elements) {
