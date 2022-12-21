@@ -21,6 +21,8 @@ public class ForecastAdapterTest {
 
         Assert.Equal(102860u, adapter.SurfacePressure[0]);
         Assert.Equal(102840u, adapter.SurfacePressure[1]);
+        Assert.Equal(0.1f, adapter.AbsErrorSurfacePressure[0]);
+        Assert.Equal(0.2f, adapter.AbsErrorSurfacePressure[1]);
     }
 
     [Fact]

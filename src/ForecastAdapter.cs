@@ -1,6 +1,7 @@
 namespace stefc.mosmix;
 
 using Pa = Nullable<System.UInt32>; 
+using hPa = Nullable<System.Single>; 
 using Angle = Nullable<System.UInt32>; 
 using Temp = Nullable<System.Single>;
 using Speed = Nullable<System.Single>;
@@ -10,7 +11,9 @@ public class ForecastAdapter
     private readonly IDictionary<string, double?[]> forecasts;
 
     private readonly Lazy<Pa[]> surfacePressure;
+    private readonly Lazy<hPa[]> absErrorSurfacePressure;
     private readonly Lazy<Temp[]> temperature;
+    private readonly Lazy<Temp[]> absErrorTemperature;
     private readonly Lazy<Temp[]> minTemperature;
     private readonly Lazy<Temp[]> maxTemperature;
     private readonly Lazy<Temp[]> meanTemperature;
@@ -24,25 +27,31 @@ public class ForecastAdapter
     public ForecastAdapter(IDictionary<string, double?[]> forecasts)
     {
         this.forecasts = forecasts;
-        this.surfacePressure = new Lazy<Pa[]>(() => this.forecasts["PPPP"].Select(ToPa).ToArray());
-        this.temperature = new Lazy<Temp[]>(() => this.forecasts["TTT"].Select(ToTemp).ToArray());
-        this.minTemperature = new Lazy<Temp[]>(() => this.forecasts["TN"].Select(ToTemp).ToArray());
-        this.maxTemperature = new Lazy<Temp[]>(() => this.forecasts["TX"].Select(ToTemp).ToArray());
-        this.meanTemperature = new Lazy<Temp[]>(() => this.forecasts["TM"].Select(ToTemp).ToArray());
-        this.dewPoint = new Lazy<Temp[]>(() => this.forecasts["Td"].Select(ToTemp).ToArray());
-        this.windDirection = new Lazy<Angle[]>(() => this.forecasts["DD"].Select(ToAngle).ToArray());
-        this.windSpeed = new Lazy<Speed[]>(() => this.forecasts["FF"].Select(ToSpeed).ToArray());
-        this.windSpeed1h = new Lazy<Speed[]>(() => this.forecasts["FX1"].Select(ToSpeed).ToArray());
-        this.windSpeed3h = new Lazy<Speed[]>(() => this.forecasts["FX3"].Select(ToSpeed).ToArray());
-        this.windSpeed12h = new Lazy<Speed[]>(() => this.forecasts["FXh"].Select(ToSpeed).ToArray()); 
-
+        this.surfacePressure = this.CreateTransform("PPPP", ToPa);
+        this.absErrorSurfacePressure = this.CreateTransform("E_PPP",TohPa);
+        this.temperature = this.CreateTransform("TTT",ToTemp);
+        this.absErrorTemperature = this.CreateTransform("E_TTT",ToTempAbs);
+        this.minTemperature = this.CreateTransform("TN",ToTemp);
+        this.maxTemperature = this.CreateTransform("TX",ToTemp);
+        this.meanTemperature = this.CreateTransform("TM",ToTemp);
+        this.dewPoint = this.CreateTransform("Td",ToTemp);
+        this.windDirection = this.CreateTransform("DD",ToAngle);
+        this.windSpeed = this.CreateTransform("FF",ToSpeed);
+        this.windSpeed1h = this.CreateTransform("FX1",ToSpeed);
+        this.windSpeed3h = this.CreateTransform("FX3",ToSpeed);
+        this.windSpeed12h = this.CreateTransform("FXh",ToSpeed); 
     }
 
-    // Sureface Pressure in pA
+    private Lazy<T[]> CreateTransform<T>(string elementName, Func<double?, T> transform) 
+    => new Lazy<T[]>(() => this.forecasts[elementName].Select(transform).ToArray());
+
+    // Surface Pressure in Pa & Abs. Error in hPa
     public Pa[] SurfacePressure => this.surfacePressure.Value;
+    public hPa[] AbsErrorSurfacePressure => this.absErrorSurfacePressure.Value;
 
     // Temperature's in Celcius °
     public Temp[] Temperature => this.temperature.Value;
+    public Temp[] AbsErrorTemperature => this.absErrorTemperature.Value;
     public Temp[] MinTemperature => this.minTemperature.Value;
     public Temp[] MaxTemperature => this.maxTemperature.Value;
     public Temp[] MeanTemperature => this.meanTemperature.Value;
@@ -59,12 +68,14 @@ public class ForecastAdapter
 
     // Pressure Pa
     private Pa ToPa(double? x) => (Pa)x;
+    private hPa TohPa(double? x) => x != null ? Convert.ToSingle(x/100.0) : null;
 
     // Degree ° 0..360
     private Angle ToAngle(double? x) => (Angle)x;
 
     // Temperature ° Celcius
     private Temp ToTemp(double? x) => x != null ? Convert.ToSingle(x-273.15) : null;
+    private Temp ToTempAbs(double? x) => x != null ? Convert.ToSingle(x) : null;
 
     // Windspeed m/s 
     private Speed ToSpeed(double? x) => x != null ? Convert.ToSingle(x) : null;

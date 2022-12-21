@@ -9,7 +9,11 @@
   </PropertyGroup>
 
  <ItemGroup>
-    <PackageReference Include="stefc.mosmix" Version="0.2.1" />
+    <!-- <PackageReference Include="stefc.mosmix" Version="0.2.9" /> -->
+    <ProjectReference Include="..\src\mosmix.csproj" /> 
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
+     <PackageReference Include="SolarCalculator" Version="3.2.1" />
+     <PackageReference Include="morelinq" Version="3.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,5 +21,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
 </Project>
