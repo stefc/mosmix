@@ -11,6 +11,7 @@
 
   <PropertyGroup>
     <Nullable>enable</Nullable>
+    <NoWarn>NU5128;$(NoWarn)</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -27,6 +28,10 @@
         <PackageTags>mosmix, dwd</PackageTags>
         <PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageIcon>mosmix.icon.png</PackageIcon>
+        <PackageDependencies>
+          <Group targetFramework=".NETStandard2.1" />
+        </PackageDependencies>
+
     </PropertyGroup>
 
     <ItemGroup>
