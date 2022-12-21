@@ -1,6 +1,4 @@
-﻿
-using System.Diagnostics;
-using stefc.mosmix;
+﻿using stefc.mosmix;
 
 internal class Program
 {
