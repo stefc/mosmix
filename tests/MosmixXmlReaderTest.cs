@@ -9,7 +9,7 @@ public class MosmixXmlReaderTest
     [Fact]
     public void ImportKmlTest()
     {
-        using (var stream = File.Open("MOSMIX_A762.kml", FileMode.Open))
+        using (var stream = File.Open("MOSMIX_A762.kml", FileMode.Open, FileAccess.Read, FileShare.Read))
         {
             var reader = MosmixReaderFactory.CreateForKml(stream);
 
@@ -32,7 +32,7 @@ public class MosmixXmlReaderTest
     [Fact]
     public void ImportKmzTest()
     {
-        using (var stream = File.Open("MOSMIX_A762.kmz", FileMode.Open))
+        using (var stream = File.Open("MOSMIX_A762.kmz", FileMode.Open, FileAccess.Read, FileShare.Read))
         {
             var reader = MosmixReaderFactory.CreateForKmz(stream);
 
