@@ -55,7 +55,3 @@ To see for a format description habe a look on (German)
 To see a list of the five thousand weather stations worldwide see: 
 
 [List of Mosmix stations](https://www.dwd.de/EN/ourservices/met_application_mosmix/mosmix_stations.html)
-
-
-
-
