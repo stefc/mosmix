@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+ <ItemGroup>
+    <!-- <PackageReference Include="stefc.mosmix" Version="0.2.9" /> -->
+    <ProjectReference Include="..\src\mosmix.csproj" /> 
+    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="LanguageExt.Core" Version="4.4.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.51.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.21.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="../data/st.cfg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+        <Protobuf Include="../data/protos/station.proto" GrpServices="None" Access="Internal" Link="Protos\station.proto" />
+  </ItemGroup>
+</Project>

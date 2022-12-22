@@ -16,3 +16,12 @@ public record ProductDefinition(string Issuer, string Id, DateTime? IssueTime, I
 public record PlaceMark(string Name, string Description, Coordinate? Coordinate, IDictionary<string, double?[]> Forecasts) { }
 
 public record Coordinate(decimal Latitude, decimal Longitude, decimal Altitude) { }
+
+public enum Area {
+    Land = 1, 
+    Mountain = 2,
+    Ocean = 3,
+    Coast = 4
+}
+
+public record class Station (int Clu, string Id, string Name, Coordinate Location, Area Area) {}

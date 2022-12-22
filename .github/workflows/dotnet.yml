@@ -2,7 +2,11 @@ name: 'CI\CD'
 
 on:
     push:
-        branches: "*"
+        branches:
+            - "main"
+            - "develop"
+            - "release/**"
+            - "feature/**"
 
 jobs:
     build:
@@ -13,16 +17,15 @@ jobs:
 
         steps:
             - name: Checkout source
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
               with:
                   fetch-depth: 0
 
             - name: Setup .NET 7
-              uses: actions/setup-dotnet@v1
+              uses: actions/setup-dotnet@v3
               with:
                   dotnet-version: "7.0.x"
-                  include-prerelease: true
-          
+
             - name: Auth nuget source
               run: dotnet nuget add source --username stefc --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/stefc/index.json"
 
@@ -38,17 +41,17 @@ jobs:
             - name: Release or PreRelease
               id: package-version
               run: |
-                if [$REF == 'refs/heads/main']
-                then
-                  echo "package_version=v${{ env.GitBuildVersionSimple }}" >> $GITHUB_ENV
-                else
-                  echo "package_version=v${{ env.GitAssemblyInformationalVersion }}" >> $GITHUB_ENV
-                fi
-              env: 
-                REF: ${{ github.ref }}
+                  if [$REF == 'refs/heads/main']
+                  then
+                    echo "package_version=v${{ env.GitBuildVersionSimple }}" >> $GITHUB_ENV
+                  else
+                    echo "package_version=v${{ env.GitAssemblyInformationalVersion }}" >> $GITHUB_ENV
+                  fi
+              env:
+                  REF: ${{ github.ref }}
 
             - name: Upload artifacts
-              uses: actions/upload-artifact@v2
+              uses: actions/upload-artifact@v3
               with:
                   name: stefc.mosmix.v${{ env.package_version }}.nupkg
                   path: src/bin/Release/*.nupkg
@@ -84,7 +87,7 @@ jobs:
 
             - name: Publish the package to nuget.org
               run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source https://api.nuget.org/v3/index.json
-            
+
             # - name: Generate changelog
             #   id: changelog
             #   uses: jaywcjlove/changelog-generator@v1.6.3
@@ -105,3 +108,4 @@ jobs:
 
             - name: Publish the package to github
               run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+

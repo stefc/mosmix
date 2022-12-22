@@ -10,6 +10,11 @@ internal static class Program
 {
     private static void Main(string[] args)
     {
+
+        var stations = MosmixStationRegistry.GetAll();
+        var wittenborn = stations.Single( s => s.Id == "A762");
+        System.Console.WriteLine(wittenborn.Clu);
+
         var path = Path.GetDirectoryName(typeof(Program).Assembly?.Location) ?? string.Empty;
         using (var stream = File.Open(Path.Combine(path, "MOSMIX_A762.kmz"), FileMode.Open))
         {

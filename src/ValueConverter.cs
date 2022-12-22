@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace stefc.mosmix;
 
-internal static class ValueConverter
+public static class ValueConverter
 {
     internal delegate bool TryValueConverter(string xmlValue, out object value);
 
@@ -61,7 +61,7 @@ internal static class ValueConverter
     internal static DateTime ToDateExact(string input) 
     => DateTime.ParseExact(input.Trim(), "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffK", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
 
-    internal static decimal ToDecimal(string input) {
+    public static decimal ToDecimal(string input) {
         var numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite;
         return decimal.Parse(input, numberStyle, CultureInfo.InvariantCulture);
     }

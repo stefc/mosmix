@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package stefc.mosmix.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "stefc.mosmix.V1";
+
+message Station  {
+    
+    int32 clu = 1;
+    string id = 2;
+    string name = 3;
+
+    message Coordinate {
+        float lat = 1;
+        float lon = 2;
+        int32 alt = 3;
+    }
+
+    Coordinate location = 4; 
+
+    enum Area {
+        LAND = 0; 
+        MOUNTAIN = 1;
+        OCEAN = 2;
+        COAST = 3;
+    }
+
+    Area area = 5;
+}
+
+message CountryMessage {
+    string id = 1;
+    string name = 2;
+}
+
+message StationRegistry {
+    repeated Station stations = 1;
+
+    google.protobuf.Timestamp last_updated = 2;
+}

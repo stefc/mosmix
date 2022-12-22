@@ -37,11 +37,26 @@
     <ItemGroup>
         <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
         <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.51.0" />
+        <PackageReference Include="Google.Protobuf" Version="3.21.12" />
+        
     </ItemGroup>
 
     <ItemGroup>
         <None Include="..\mosmix.icon.png" Pack="true" PackagePath="mosmix.icon.png" />
         <None Include="..\readme.md" Pack="true" PackagePath="readme.md" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="../data/stations.dat" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="../data/stations.dat" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="../data/protos/station.proto" GrpServices="None" Access="Internal" Link="Protos\station.proto" />
     </ItemGroup>
 
 </Project>
