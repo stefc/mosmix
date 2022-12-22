@@ -43,9 +43,9 @@ jobs:
               run: |
                   if [$REF == 'refs/heads/main']
                   then
-                    echo "package_version=v${{ env.GitBuildVersionSimple }}" >> $GITHUB_ENV
+                    echo "package_version=${{ env.GitBuildVersionSimple }}" >> $GITHUB_ENV
                   else
-                    echo "package_version=v${{ env.GitAssemblyInformationalVersion }}" >> $GITHUB_ENV
+                    echo "package_version=${{ env.GitAssemblyInformationalVersion }}" >> $GITHUB_ENV
                   fi
               env:
                   REF: ${{ github.ref }}
@@ -66,7 +66,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/develop' }}
         steps:
             - name: Download artifacts
-              uses: actions/download-artifact@v2
+              uses: actions/download-artifact@v3
               with:
                   name: stefc.mosmix.${{ needs.build.outputs.tag }}.nupkg
                   path: artifacts
@@ -80,7 +80,7 @@ jobs:
         if: ${{ github.ref == 'refs/heads/main' }}
         steps:
             - name: Download artifacts
-              uses: actions/download-artifact@v2
+              uses: actions/download-artifact@v3
               with:
                   name: stefc.mosmix.${{ needs.build.outputs.tag }}.nupkg
                   path: artifacts
@@ -88,11 +88,11 @@ jobs:
             - name: Publish the package to nuget.org
               run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source https://api.nuget.org/v3/index.json
 
-            # - name: Generate changelog
-            #   id: changelog
-            #   uses: jaywcjlove/changelog-generator@v1.6.3
-            #   with:
-            #     token: ${{ secrets.GITHUB_TOKEN }}
+            - name: Generate changelog
+              id: changelog
+              uses: jaywcjlove/changelog-generator@v1.6.3
+              with:
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Create release
               uses: ncipollo/release-action@v1
