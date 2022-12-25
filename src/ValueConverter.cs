@@ -62,7 +62,7 @@ public static class ValueConverter
     => DateTime.ParseExact(input.Trim(), "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffK", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal);
 
     public static decimal ToDecimal(string input) {
-        var numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite;
+        var numberStyle = NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingWhite | NumberStyles.AllowTrailingWhite | NumberStyles.AllowLeadingSign;
         return decimal.Parse(input, numberStyle, CultureInfo.InvariantCulture);
     }
 }

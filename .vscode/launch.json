@@ -5,7 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (console)",
+            "name": "Convert Stations",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/tools/bin/Debug/net7.0/convertStations.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/tools",
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "requireExactSource": false,
+        },
+        {
+            "name": "Sample App",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
@@ -14,11 +26,6 @@
             "cwd": "${workspaceFolder}/sample",
             "console": "internalConsole",
             "stopAtEntry": false
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
         }
     ]
 }

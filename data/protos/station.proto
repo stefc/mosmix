@@ -3,6 +3,7 @@ syntax = "proto3";
 package stefc.mosmix.v1;
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/wrappers.proto";
 
 option csharp_namespace = "stefc.mosmix.V1";
 
@@ -28,6 +29,10 @@ message Station  {
     }
 
     Area area = 5;
+
+    google.protobuf.Int32Value country_id = 6;
+    
+    google.protobuf.Int32Value state_id = 7;
 }
 
 message CountryMessage {
@@ -36,7 +41,7 @@ message CountryMessage {
 }
 
 message StationRegistry {
-    repeated Station stations = 1;
-
-    google.protobuf.Timestamp last_updated = 2;
+    google.protobuf.Timestamp last_updated = 1;
+    repeated Station stations = 2;
+    string country_state_trie = 3;
 }

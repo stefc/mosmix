@@ -7,7 +7,6 @@
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
         <NeutralLanguage>de</NeutralLanguage>
-        <DebugType>embedded</DebugType>
         <ImplicitUsings>enable</ImplicitUsings>
         <ImplicitUsings>true</ImplicitUsings>
     </PropertyGroup>
