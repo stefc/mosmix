@@ -24,4 +24,4 @@ public enum Area {
     Coast = 4
 }
 
-public record class Station (int Clu, string Id, string Name, Coordinate Location, Area Area) {}
+public record class Station (int Clu, string Id, string Name, Coordinate Location, Area Area, Nullable<UInt16> CountryId = null, Nullable<UInt16> StateId = null) {}

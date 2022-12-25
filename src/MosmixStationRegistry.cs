@@ -22,5 +22,12 @@ public static class MosmixStationRegistry
                 new Coordinate(Convert.ToDecimal(station.Location.Lat),
                     Convert.ToDecimal(station.Location.Lon),
                     Convert.ToDecimal(station.Location.Alt)),
-                    (Area)station.Area)).ToImmutableArray();
+                    (Area)station.Area,
+                    (ushort?)station.CountryId,  
+                    (ushort?)station.StateId) 
+                    ).ToImmutableArray();
+
+    public static string GetCountryStatePatriciaTrieRaw() => stationRegistry
+        .Value
+        .CountryStateTrie;
 }

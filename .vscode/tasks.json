@@ -21,7 +21,7 @@
             "type": "process",
             "args": [
                 "test",
-				"${workspaceFolder}/tests/mosmix.tests.csproj"
+				"${workspaceFolder}/mosmix.sln"
             ],
             "group": {
                 "kind": "test",

@@ -55,3 +55,16 @@ To see for a format description habe a look on (German)
 To see a list of the five thousand weather stations worldwide see: 
 
 [List of Mosmix stations](https://www.dwd.de/EN/ourservices/met_application_mosmix/mosmix_stations.html)
+
+In the Library a list of all Mosmix stations is staticly embedded and can be accessed with the 
+two methods above: 
+
+````csharp
+var stations = MosmixStationRegistry.GetAll();
+var trie = MosmixStationRegistry.GetCountryStatePatriciaTrieRaw();
+````
+
+The first call retrieve a list of all Mosmix stations and the second a so called Patricia-Tree 
+which contains all the referenced Countries and the belonging States of each Country. If available 
+a station reference a index into this trie with the Properties `CountryId` and `StateId`. For the moment 
+you must parse the Patricia Trie by yourself. In the future I'll implement it also here in the library. 
