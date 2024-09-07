@@ -21,11 +21,6 @@ jobs:
               with:
                   fetch-depth: 0
 
-            - name: Setup .NET 8
-              uses: actions/setup-dotnet@v3
-              with:
-                  dotnet-version: "8.0.x"
-
             - name: Auth nuget source
               run: dotnet nuget add source --username stefc --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/stefc/index.json"
 
@@ -73,6 +68,9 @@ jobs:
 
             - name: Publish the package to nuget.org
               run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN }} --source https://api.nuget.org/v3/index.json
+
+            - name: Publish the package to github
+              run: dotnet nuget push artifacts/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
 
     deploy-release:
         runs-on: ubuntu-latest
