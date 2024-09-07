@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <NeutralLanguage>de</NeutralLanguage>
         <DebugType>embedded</DebugType>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -22,7 +22,7 @@
 
     <!-- Versionierung zusammen mit version.json -->
     <ItemGroup>
-        <PackageReference Include="Nerdbank.GitVersioning" Version="3.4.244">
+        <PackageReference Include="Nerdbank.GitVersioning" Version="3.6.143">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>

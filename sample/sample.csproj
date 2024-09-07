@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <OutputType>exe</OutputType>
-    <TargetFramework>net7.0</TargetFramework>
-    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -11,9 +11,9 @@
  <ItemGroup>
     <!-- <PackageReference Include="stefc.mosmix" Version="0.2.9" /> -->
     <ProjectReference Include="..\src\mosmix.csproj" /> 
-    <PackageReference Include="Spectre.Console" Version="0.45.0" />
-     <PackageReference Include="SolarCalculator" Version="3.2.1" />
-     <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="Spectre.Console" Version="0.49.1" />
+     <PackageReference Include="SolarCalculator" Version="3.3.0" />
+     <PackageReference Include="morelinq" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

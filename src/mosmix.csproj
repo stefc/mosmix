@@ -2,7 +2,7 @@
 
   <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <LangVersion>10.0</LangVersion>
+        <LangVersion>12.0</LangVersion>
         <IncludeBuildOutput>true</IncludeBuildOutput>
         <IsPackable>true</IsPackable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -35,10 +35,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="System.Text.Encoding.CodePages" Version="7.0.0" />
-        <PackageReference Include="System.Collections.Immutable" Version="7.0.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.51.0" />
-        <PackageReference Include="Google.Protobuf" Version="3.21.12" />
+        <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
+        <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.66.0" />
+        <PackageReference Include="Google.Protobuf" Version="3.28.0" />
         
     </ItemGroup>
 
