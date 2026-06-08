@@ -1,0 +1,30 @@
+syntax = "proto3";
+import "google/protobuf/timestamp.proto";
+
+message Coordinate {
+    float lat = 1;
+    float lon = 2;
+    optional int32 alt = 3;
+}
+
+enum Area {
+    LAND = 0;
+    MOUNTAIN = 1;
+    OCEAN = 2;
+    COAST = 3;
+    UNKNOWN = 9;
+}
+
+message Station  {
+    int32 clu = 1;
+    string id = 2;
+    string name = 3;
+    Coordinate location = 4;
+    Area area = 5;
+}
+
+message StationRegistry {
+    repeated Station stations = 1;
+
+    google.protobuf.Timestamp last_updated = 2;
+}

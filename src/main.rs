@@ -1,22 +1,56 @@
-fn main() {
-    println!("Hello, world!");
+use anyhow::Result;
+use clap::{Parser, Subcommand};
+use std::path::{Path, PathBuf};
+
+mod read_file;
+mod convert_stations;
+mod list_stations;
+
+mod gen_protobuf {
+    pub mod stations;
 }
 
-#[cfg(test)]
-mod tests {
-    use chrono::{Datelike, TimeZone, Timelike, Utc};
+#[derive(Parser)]
+#[command(version, about = "MOSMIX data utility", long_about = None)]
+struct Cli {
+    #[command(subcommand)]
+    command: Commands,
+}
 
-    #[test]
-    fn truncate_year_works() {
+#[derive(Subcommand)]
+enum Commands {
+    /// Converts a station configuration file to a binary format.
+    Convert {
+        #[arg(short, long)]
+        input: String,
 
-        let dt = Utc.with_ymd_and_hms(2026, 4, 3, 12, 2, 34).unwrap();
+        #[arg(short, long)]
+        output: Option<String>,
+    },
 
-        assert_eq!(dt.year(), 2026);
-        assert_eq!(dt.month(), 4);
-        assert_eq!(dt.day(), 3);
-        assert_eq!(dt.hour(), 12);
-        assert_eq!(dt.minute(), 2);
-        assert_eq!(dt.second(), 34);
+    List {
     }
 }
 
+fn main() -> Result<()> {
+    let cli = Cli::parse();
+    match &cli.command {
+        Commands::Convert { input, output } => {
+            let input = Path::new(input);
+            let output = match output {
+                None => input.with_extension("bin"),
+                Some(x) => PathBuf::from(x),
+            };
+
+            convert_stations::convert_stations_file(input, &output)?;
+            println!("Successfully converted {} to {:?}", input.display(), output);
+        },
+
+        Commands::List { } => {
+            list_stations::list_stations()?;
+            println!("All mosmix stations currently available");
+        }
+    }
+
+    Ok(())
+}
