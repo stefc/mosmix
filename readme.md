@@ -1,4 +1,4 @@
-## Mosmix Reading Library 
+﻿## Mosmix Reading Library 
 
 With this nuget package you can easy read MOSMIX data came from weather stations around the world. 
 So if your service depends on weather data so why not read it out directly from your available weather stations
@@ -55,3 +55,7 @@ To see for a format description habe a look on (German)
 To see a list of the five thousand weather stations worldwide see: 
 
 [List of Mosmix stations](https://www.dwd.de/EN/ourservices/met_application_mosmix/mosmix_stations.html)
+
+Ebenfalls aktuelle Liste 
+https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/daily/kl/recent/
+
