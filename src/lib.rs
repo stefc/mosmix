@@ -8,6 +8,7 @@ mod gen_protobuf {
 
 pub mod tests;
 mod dto;
+mod geo_coord;
 
 const STATIONS_DATA: &[u8] = include_bytes!("../data/stations.dat");
 

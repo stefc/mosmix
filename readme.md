@@ -14,6 +14,8 @@ To embedd all ~6.000 mosmix station in the binary without consuming much memory
 I transform it to a protobuf serialization format with a given scheme `stations.proto`
 460Kb shrinks towards 250Kb.
 
+
+
 This conversion you can do yourself in case a new `st.cfg` is available. 
 
 ```zsh
@@ -54,11 +56,11 @@ Sample output (`id;name;geo-location`):
 ## Further information 
 To see for a format description habe a look on (German)
 
-(Mosmix)[https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nwv_anschlussverfahren/mosmix_verfahren_node.html]
+[Mosmix](https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nwv_anschlussverfahren/mosmix_verfahren_node.html)
 
 To see a list of the five thousand weather stations worldwide see: 
 
-(List of Mosmix stations)[https://www.dwd.de/EN/ourservices/met_application_mosmix/mosmix_stations.html]
+[Weather Stations](https://www.dwd.de/EN/ourservices/met_application_mosmix/mosmix_stations.html)
 
 
 

@@ -5,6 +5,8 @@ use std::path::{Path, PathBuf};
 mod read_file;
 mod convert_stations;
 mod list_stations;
+mod iso6709;
+mod geo_coord;
 
 mod gen_protobuf {
     pub mod stations;
@@ -29,6 +31,10 @@ enum Commands {
     },
 
     List {
+        #[arg(long)]
+        geo: Option<String>,
+        #[arg(long)]
+        radius: Option<i16>,
     }
 }
 
@@ -46,9 +52,8 @@ fn main() -> Result<()> {
             println!("Successfully converted {} to {:?}", input.display(), output);
         },
 
-        Commands::List { } => {
-            list_stations::list_stations()?;
-            println!("All mosmix stations currently available");
+        Commands::List { geo, radius} => {
+            list_stations::list_stations(geo, radius)?;
         }
     }
 

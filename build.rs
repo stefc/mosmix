@@ -17,7 +17,6 @@ fn main() -> Result<(), Box<dyn Error>> {
     protobuf_codegen::Codegen::new()
         .pure()
         .includes(&["src/protos/"])
-        // Inputs must reside in some of include paths.
         .input("src/protos/stations.proto")
         .out_dir(&protobuf_gen_dir)
         .customize(protobuf_codegen::Customize::default().gen_mod_rs(false))
