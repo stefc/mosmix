@@ -2,6 +2,12 @@
 name = "mosmix"
 version = "0.1.0"
 edition = "2021"
+description = "Contains a database of all mosmix weather-stations."
+license = "MIT" # Gültiger SPDX-Identifier
+readme = "readme.md"          # Pfad zu deiner Readme-Datei
+repository = "https://github.com/dein-username/mein_tolles_tool"
+keywords = ["cli", "tool", "utility", "mosmix", "dwd"]
+categories = ["command-line-utilities"]
 
 [dependencies]
 chrono = "0.4.45"
