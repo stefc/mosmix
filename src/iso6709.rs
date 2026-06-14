@@ -20,8 +20,12 @@ pub fn parse_iso6709(coord: &str) -> Result<LatLon, &'static str> {
         .map(|idx| lon_start + 1 + idx)
         .unwrap_or(coord.len());
 
-    let lat = coord[..lon_start].parse::<f32>().map_err(|_| "Failed to parse latitude")?;
-    let lon = coord[lon_start..lon_end].parse::<f32>().map_err(|_| "Failed to parse longitude")?;
+    let lat = coord[..lon_start]
+        .parse::<f32>()
+        .map_err(|_| "Failed to parse latitude")?;
+    let lon = coord[lon_start..lon_end]
+        .parse::<f32>()
+        .map_err(|_| "Failed to parse longitude")?;
 
     Ok(LatLon { lat, lon })
 }

@@ -2,11 +2,11 @@ use anyhow::Result;
 use clap::{Parser, Subcommand};
 use std::path::{Path, PathBuf};
 
-mod read_file;
 mod convert_stations;
-mod list_stations;
-mod iso6709;
 mod geo_coord;
+mod iso6709;
+mod list_stations;
+mod read_file;
 
 mod gen_protobuf {
     pub mod stations;
@@ -35,7 +35,7 @@ enum Commands {
         geo: Option<String>,
         #[arg(long)]
         radius: Option<i16>,
-    }
+    },
 }
 
 fn main() -> Result<()> {
@@ -50,9 +50,9 @@ fn main() -> Result<()> {
 
             convert_stations::convert_stations_file(input, &output)?;
             println!("Successfully converted {} to {:?}", input.display(), output);
-        },
+        }
 
-        Commands::List { geo, radius} => {
+        Commands::List { geo, radius } => {
             list_stations::list_stations(geo, radius)?;
         }
     }

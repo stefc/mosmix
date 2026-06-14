@@ -13,7 +13,10 @@ pub fn list_stations(geo: &Option<String>, _radius: &Option<i16>) -> Result<(), 
                 let mut filtered_stations: Vec<_> = stations
                     .into_iter()
                     .filter_map(|station| {
-                        let target = LatLon { lat: station.location.lat, lon: station.location.lon };
+                        let target = LatLon {
+                            lat: station.location.lat,
+                            lon: station.location.lon,
+                        };
                         let distance = calculate_distance_km(&origin, &target);
                         (distance <= radius as f32).then_some((station, distance))
                     })
@@ -21,18 +24,22 @@ pub fn list_stations(geo: &Option<String>, _radius: &Option<i16>) -> Result<(), 
 
                 filtered_stations.sort_by(|a, b| a.1.total_cmp(&b.1));
                 for (station, distance) in filtered_stations {
-                    let location = iso6709::format_iso6709(station.location.lat, station.location.lon);
-                    println!("{};'{}';{};{:.0}", station.id, station.name, location, distance);
+                    let location =
+                        iso6709::format_iso6709(station.location.lat, station.location.lon);
+                    println!(
+                        "{};'{}';{};{:.0}",
+                        station.id, station.name, location, distance
+                    );
                 }
-            }
-            else {
+            } else {
                 println!("id;name;location");
                 for station in stations {
-                    let location = iso6709::format_iso6709(station.location.lat, station.location.lon);
+                    let location =
+                        iso6709::format_iso6709(station.location.lat, station.location.lon);
                     println!("{};'{}';{}", station.id, station.name, location);
                 }
             }
-        },
+        }
         Err(e) => {
             // Falls die daten.bin keine gültigen Protobuf-Daten für dieses Struct enthält
             eprintln!("Fehler beim Parsen der Protobuf-Daten: {}", e);
@@ -50,7 +57,8 @@ fn calculate_distance_km(p1: &LatLon, p2: &LatLon) -> f32 {
     let lat1_rad = p1.lat.to_radians();
     let lat2_rad = p2.lat.to_radians();
 
-    let a = (d_lat / 2.0).sin().powi(2) + lat1_rad.cos() * lat2_rad.cos() * (d_lon / 2.0).sin().powi(2);
+    let a =
+        (d_lat / 2.0).sin().powi(2) + lat1_rad.cos() * lat2_rad.cos() * (d_lon / 2.0).sin().powi(2);
     let c = 2.0 * a.sqrt().atan2((1.0 - a).sqrt());
 
     EARTH_RADIUS_KM * c

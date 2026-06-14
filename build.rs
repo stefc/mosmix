@@ -3,7 +3,6 @@ use std::error::Error;
 use std::path::PathBuf;
 
 fn main() -> Result<(), Box<dyn Error>> {
-
     let protobuf_gen_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR")?)
         .join("src")
         .join("gen_protobuf");

@@ -6,17 +6,17 @@ mod gen_protobuf {
     pub mod stations;
 }
 
-pub mod tests;
 mod dto;
 mod geo_coord;
+pub mod tests;
 
 const STATIONS_DATA: &[u8] = include_bytes!("../data/stations.dat");
 
 /// Retrieve all stations from the embedded stations data registry.
 pub fn get_stations() -> Result<Vec<Station>, std::io::Error> {
-    use protobuf::Message;
-    use dto::Coordinate;
     use crate::gen_protobuf::stations::StationRegistry;
+    use dto::Coordinate;
+    use protobuf::Message;
 
     let registry = StationRegistry::parse_from_bytes(STATIONS_DATA)
         .map_err(|e| std::io::Error::new(std::io::ErrorKind::Other, e))?;

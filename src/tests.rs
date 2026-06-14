@@ -107,7 +107,7 @@ mod test {
     fn test_get_stations_returns_stations() {
         let stations = crate::get_stations().unwrap();
         assert!(!stations.is_empty(), "Stations list should not be empty");
-        
+
         // Assert on the first station to make sure properties are populated
         let first = &stations[0];
         assert!(!first.id.is_empty(), "Station ID should not be empty");

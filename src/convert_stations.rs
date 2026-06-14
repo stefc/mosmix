@@ -1,9 +1,9 @@
-use std::io::{BufRead, BufReader};
-use std::path::{Path, PathBuf};
 use anyhow::{Context, Error, Result};
 use chrono::Utc;
 use protobuf::well_known_types::timestamp::Timestamp;
 use protobuf::{EnumOrUnknown, Message, MessageField};
+use std::io::{BufRead, BufReader};
+use std::path::{Path, PathBuf};
 
 use crate::gen_protobuf::stations::{Area, Coordinate, Station, StationRegistry};
 use crate::read_file::read_win_1252_file;
@@ -35,7 +35,11 @@ fn get_time_stamp() -> Timestamp {
 }
 
 fn slice_chars(s: &str, start: usize, end: usize) -> &str {
-    let start_byte = s.char_indices().nth(start).map(|(i, _)| i).unwrap_or(s.len());
+    let start_byte = s
+        .char_indices()
+        .nth(start)
+        .map(|(i, _)| i)
+        .unwrap_or(s.len());
     let end_byte = s.char_indices().nth(end).map(|(i, _)| i).unwrap_or(s.len());
     &s[start_byte..end_byte].trim()
 }
@@ -63,15 +67,24 @@ fn parse_st_cfg(path: &Path) -> Result<Vec<Station>> {
             continue;
         }
 
-        let clu = slice_chars(&line, 0, 5).parse::<i32>()
+        let clu = slice_chars(&line, 0, 5)
+            .parse::<i32>()
             .with_context(|| format!("Failed to parse 'clu' on line ({}): {}", line_no, line))?;
         let id = slice_chars(&line, 12, 17).to_string();
         let name = slice_chars(&line, 23, 43).to_string();
-        let lat = slice_chars(&line, 44, 50).parse::<f32>()
+        let lat = slice_chars(&line, 44, 50)
+            .parse::<f32>()
             .with_context(|| format!("Failed to parse 'lat' on line ({}): {}", line_no, line))?;
-        let lon = slice_chars(&line, 51, 58).parse::<f32>()
-            .with_context(|| format!("Failed to parse 'lon' on line ({}): {} ['{}']", line_no, line, slice_chars(&line, 51, 58).trim()))?;
-        let elev = slice_chars(&line, 59, 64).parse::<i32>()
+        let lon = slice_chars(&line, 51, 58).parse::<f32>().with_context(|| {
+            format!(
+                "Failed to parse 'lon' on line ({}): {} ['{}']",
+                line_no,
+                line,
+                slice_chars(&line, 51, 58).trim()
+            )
+        })?;
+        let elev = slice_chars(&line, 59, 64)
+            .parse::<i32>()
             .with_context(|| format!("Failed to parse 'elev' on line({}): {}", line_no, line))?;
 
         let station_type = slice_chars(&line, 72, char_count).to_string();
