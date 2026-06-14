@@ -1,4 +1,4 @@
-## Mosmix Reading Library 
+## Mosmix Library & CLI Tool 
 
 ## Command line tool `mosmix`
 
@@ -46,18 +46,9 @@ Sample output (`id;name;geo-location`):
 
 `cargo add mosmix`
 
-After this you can create an ```IMosmixReader``` for ```kml``` or ```kmz``` files and read the 
-complete weather station document out of it. 
+::further info to come
 
-```csharp
-using (var stream = File.Open(Path.Combine(path, "MOSMIX_A762.kmz"), FileMode.Open))
-{
-    var reader = MosmixReaderFactory.CreateForKmz(stream);
-    var document = reader.Read(stream);
-    System.Console.WriteLine($"Issuer:{document.Definition.Issuer}");
-    System.Console.WriteLine($"Name:{document.PlaceMark.Name}");
-    System.Console.WriteLine($"Description:{document.PlaceMark.Description}");
-}
+```rust
 ```
 
 ## Further information 

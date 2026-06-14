@@ -5,7 +5,7 @@ edition = "2021"
 description = "Contains a database of all mosmix weather-stations."
 license = "MIT" # Gültiger SPDX-Identifier
 readme = "readme.md"          # Pfad zu deiner Readme-Datei
-repository = "https://github.com/dein-username/mein_tolles_tool"
+repository = "https://github.com/stefc/mosmix"
 keywords = ["cli", "tool", "utility", "mosmix", "dwd"]
 categories = ["command-line-utilities"]
 
